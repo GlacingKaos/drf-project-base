@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+
+  api_db:
+    container_name: api_db
+    image: postgres:15.3
+    volumes:
+      - ./backups/:/var/backups/
+      - mydb:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=api
+      - POSTGRES_DB=api
+
+  api:
+    container_name: api
+    build: ./
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - api_db
+    links:
+      - "api_db:database"
+
+volumes:
+  mydb:

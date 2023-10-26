@@ -218,9 +218,7 @@ SWAGGER_SETTINGS = {
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=env.int("ACCESS_TOKEN_LIFETIME", 5)),
-    "REFRESH_TOKEN_LIFETIME": timedelta(
-        minutes=env.int("REFRESH_TOKEN_LIFETIME", 1440)
-    ),
+    "REFRESH_TOKEN_LIFETIME": timedelta(minutes=env.int("REFRESH_TOKEN_LIFETIME", 1440)),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,
@@ -249,9 +247,7 @@ AUTH_USER_MODEL = "users.CustomUser"
 
 APPEND_SLASH = True
 
-CORS_ALLOWED_ORIGINS = env.list(
-    "CORS_ALLOWED_ORIGINS", default=["http://localhost:8080"]
-)
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=["http://localhost:8080"])
 CORS_ALLOW_ALL_ORIGINS = env.bool("CORS_ALLOW_ALL_ORIGINS", False)
 
 EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", True)

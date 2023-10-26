@@ -1,16 +1,10 @@
 import environ
 from django.contrib.auth.models import Group
 from rest_framework import generics, permissions, viewsets
-
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.base.serializers import (
-    GroupSerializer,
-    UserMePasswordSerializer,
-    UserMeSerializer,
-    UserSerializer,
-)
+from apps.base.serializers import GroupSerializer, UserMePasswordSerializer, UserMeSerializer, UserSerializer
 from apps.users.models import CustomUser
 
 env = environ.Env()

@@ -53,9 +53,7 @@ urlpatterns = [
     path("v1/auth/token/", TokenObtainPairNewView.as_view(), name="token_obtain_pair"),
     path("v1/auth/token/refresh/", TokenRefreshNewView.as_view(), name="token_refresh"),
     path("v1/", include(router.urls)),
-    path(
-        "v1/users/me/password/", views.UserMePasswordView.as_view(), name="me-password"
-    ),
+    path("v1/users/me/password/", views.UserMePasswordView.as_view(), name="me-password"),
     path("v1/ping/", views.PingAPIView.as_view()),
     path("v1-auth/", include("rest_framework.urls", namespace="rest_framework")),
     # API-DOC
@@ -69,7 +67,5 @@ urlpatterns = [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
-    re_path(
-        r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
-    ),
+    re_path(r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

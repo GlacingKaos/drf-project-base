@@ -6,8 +6,6 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.settings import api_settings
 
-from apps.base.mixins import DynamicFieldsModelSerializer
-
 from .models import CustomUser
 
 env = environ.Env()
@@ -20,9 +18,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # Add custom claims
         token["is_active"] = user.is_active
-        token["tokenlifetime"] = str(
-            timedelta(minutes=env.int("ACCESS_TOKEN_LIFETIME", 5))
-        )
+        token["tokenlifetime"] = str(timedelta(minutes=env.int("ACCESS_TOKEN_LIFETIME", 5)))
 
         return token
 
@@ -34,9 +30,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data["refresh"] = str(refresh)
         data["access"] = str(refresh.access_token)
         data["is_active"] = self.user.is_active
-        data["tokenlifetime"] = timedelta(
-            minutes=env.int("ACCESS_TOKEN_LIFETIME", 5)
-        ).seconds
+        data["tokenlifetime"] = timedelta(minutes=env.int("ACCESS_TOKEN_LIFETIME", 5)).seconds
 
         if api_settings.UPDATE_LAST_LOGIN:
             update_last_login(None, self.user)
@@ -52,10 +46,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ["first_name", "last_name", "email", "password"]
 
     def validate(self, attrs):
-        first_name = attrs.get("first_name", "")
-        last_name = attrs.get("last_name", "")
-        email = attrs.get("email", "")
-        password = attrs.get("password", "")
+        # first_name = attrs.get("first_name", "")
+        # last_name = attrs.get("last_name", "")
+        # email = attrs.get("email", "")
+        # password = attrs.get("password", "")
         return attrs
 
     def create(self, validate_data):

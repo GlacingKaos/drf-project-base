@@ -1,10 +1,7 @@
-from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-
-from apps.base.models import TimeStampedModel
 
 from .managers import CustomUserManager
 
@@ -15,9 +12,7 @@ def user_directory_path(instance, filename):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(
-        _("First Name"), max_length=120, null=True, blank=True
-    )
+    first_name = models.CharField(_("First Name"), max_length=120, null=True, blank=True)
     last_name = models.CharField(_("Last Name"), max_length=120, null=True, blank=True)
     email = models.EmailField(_("email address"), unique=True)
     image = models.FileField(upload_to=user_directory_path, null=True, blank=True)

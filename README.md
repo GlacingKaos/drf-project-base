@@ -42,12 +42,12 @@ docker compose exec api python3 manage.py test
 2. Once pyenv is installed is required to install the Python version that we are using
 
     ```jsx
-    pyenv install 3.10.10
+    pyenv install 3.12.1
     ```
 
 3. Now you have to create a new virtual environment for the Insights project running this command:
     ```jsx
-    pyenv virtualenv  3.10.10 drfprojectbase
+    pyenv virtualenv 3.12.1 drfprojectbase
     cd YOUR_PROJECT_FOLDER
     echo drfprojectbase > .python-version
     ```

@@ -6,7 +6,7 @@ authors = ["Christian Gerardo Garcia Serrato <christiangerardogs@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.12"
 django = ">=4.2,<5.0"
 psycopg2-binary = "^2.9.9"
 djangorestframework = "^3.14.0"

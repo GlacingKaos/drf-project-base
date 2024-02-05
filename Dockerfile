@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Pull official base image
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 # Set working directory
 WORKDIR /code

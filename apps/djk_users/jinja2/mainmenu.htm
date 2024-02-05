@@ -1,0 +1,37 @@
+{% from 'bs_nav_items.htm' import bs_nav_items with context -%}
+{% if request.user.is_authenticated %}
+    {# Check url() Jinja2 extension / tpl.url() template context #}
+    {% set navs = [] -%}
+    {# {% set navs = [
+    {
+        'url': url('account_email'),
+        'text': _('Change E-mail'),
+    }, {
+        'url': tpl.url('account_logout'),
+        'text': _('Sign Out'),
+    }, {
+        'atts': {
+            'class': 'component',
+            'data-event': 'click',
+            'data-component-class': 'EditForm',
+            'data-component-options': tpl.to_json({'route': 'user_change', 'pkVal': request.user.pk}),
+        },
+        'url': '#',
+        'text': _('User settings'),
+    }] -%} #}
+{% else %}
+    {% set navs = [
+    {
+        'url': tpl.url('account_login'),
+        'text': _('Sign In'),
+    }, {
+        'url': tpl.url('account_signup'),
+        'text': _('Sign Up'),
+    }] -%}
+{% endif %}
+
+{% do navs.extend([
+
+]) -%}
+
+{{ bs_nav_items(navs) }}

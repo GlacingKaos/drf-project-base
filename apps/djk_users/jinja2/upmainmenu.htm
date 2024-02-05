@@ -1,0 +1,19 @@
+{% if request.user.is_authenticated %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        {{ request.user.username }}
+    </a>
+    <ul class="dropdown-menu">
+        <li><a
+            class="dropdown-item component"
+            href="#"
+            data-event='click'
+            data-component-class='EditForm'
+            data-component-options="{{ tpl.to_json({'route': 'user_change', 'pkVal': request.user.pk}) }}"
+        >{{ _('User settings') }}</a></li>
+        <li><a class="dropdown-item" href="{{ tpl.url('account_email') }}">{{ _('Change E-mail') }}</a></li>
+        <li><a class="dropdown-item" href="{{ tpl.url('account_logout') }}">{{_('Sign Out')}}</a></li>
+    </ul>
+</li>
+{% endif %}

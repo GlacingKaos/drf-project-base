@@ -15,6 +15,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_("First Name"), max_length=120, null=True, blank=True)
     last_name = models.CharField(_("Last Name"), max_length=120, null=True, blank=True)
     email = models.EmailField(_("email address"), unique=True)
+    username = models.CharField(_("Username"), max_length=30, null=True, blank=True)
     image = models.FileField(upload_to=user_directory_path, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -35,7 +36,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     @property
-    def nombre_completo(self):
+    def full_name(self):
         return "{}{}".format(
             self.first_name if self.first_name else "",
             " " + self.last_name if self.last_name else "",

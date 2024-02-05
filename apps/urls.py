@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 import environ
 from django.conf import settings
 from django.conf.urls.static import static
@@ -23,6 +24,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions, routers
 
 from apps.base import views
+from apps.djk_users.urls import urlpatterns_djk_users
 from apps.users.views import TokenObtainPairNewView, TokenRefreshNewView
 
 env = environ.Env()
@@ -48,6 +50,9 @@ router.register(r"users", views.UserViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    # DJK URLs
+    *urlpatterns_djk_users,
+    # Normal URLs
     path("admin/", admin.site.urls),
     path("v1/auth/me/", views.MeAPIView.as_view(), name="auth-get-me"),
     path("v1/auth/token/", TokenObtainPairNewView.as_view(), name="token_obtain_pair"),

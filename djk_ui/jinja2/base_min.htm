@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% if page_context is not defined -%}
+    {% set page_context = create_page_context(request) -%}
+    {% endif -%}
+    {% include 'base_head.htm' -%}
+    {% block head -%}
+    {% endblock head -%}
+</head>
+
+<body style="padding: 0;">
+    {% block body -%}
+    <div>
+        <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/{# url('') #}">My App</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/{# url('') #}">{{ _('Home') }}</a>
+                        </li>
+                        {% block upmainmenu -%}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown link
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        {% endblock upmainmenu -%}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <header class="col-md-3">
+                <nav class="navbar bg-dark border-bottom border-body navbar-light bg-light nav-main navbar-expand-lg" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav nav-pills nav-main flex-column auto-highlight">
+                            {% block mainmenu -%}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/{# url('home') #}">
+                                    <span class="glyphicon glyphicon-home"></span> {{ _('Home') }}
+                                </a>
+                            </li>
+                            {% endblock mainmenu -%}
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <main class="col-md-9">
+                <div class="container">
+                    <br/>
+                    {% if messages -%}
+                    {% include 'base_messages.htm' -%}
+                    {% endif -%}
+                    {% block main -%}
+                    {% endblock main -%}
+                </div>
+            </main>
+        </div>
+    </div>
+    {% endblock body -%}
+    {% include 'base_bottom_scripts.htm' -%}
+    {% block bottom_scripts -%}
+    {% endblock bottom_scripts -%}
+</body>
+
+</html>

@@ -115,4 +115,4 @@ class UserShortSerializer(serializers.ModelSerializer):
         fields = ["id", "first_name", "last_name", "email", "full_name"]
 
     def get_full_name(self, obj):
-        return obj.nombre_completo
+        return obj.full_name

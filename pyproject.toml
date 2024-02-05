@@ -17,6 +17,9 @@ djangorestframework-simplejwt = "^5.3.0"
 django-cors-headers = "^4.2.0"
 drf-extra-fields = "^3.7.0"
 django-filter = "^23.3"
+django-jinja-knockout = "^2.2.1"
+djk-bootstrap5 = "^2.2.1"
+django-allauth = "^0.60.1"
 
 
 [tool.poetry.group.dev.dependencies]
